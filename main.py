@@ -6,18 +6,18 @@ import reportes
 def menu():
     while True:
         print("\n==========================================")
-        print("    SISTEMA DE BIBLIOTECA VIRTUAL")
+        print("GESTOR DE INVENTARIO PARA BIBLIOTECA VIRTUAL")
         print("==========================================")
-        print("1. Registrar nuevo libro")
-        print("2. Ver inventario completo")
+        print("1. Registrar un nuevo libro")
+        print("2. Ver el inventario de libros")
         print("3. Buscar un libro")
         print("4. Prestar un libro")
         print("5. Devolver un libro")
-        print("6. Generar reporte")
+        print("6. Generar un reporte del inventario")
         print("7. Salir")
         print("==========================================")
         
-        opcion = input("Seleccione una opción: ")
+        opcion = input("Seleccione una opcion: ")
 
         if opcion == "1":
             gestion_libros.registrar_libro()
@@ -32,10 +32,10 @@ def menu():
         elif opcion == "6":
             reportes.generar_reporte()
         elif opcion == "7":
-            print("Saliendo... ¡Adiós!")
+            print("Saliendo del sistema...")
             break
         else:
-            print("Opción inválida.")
+            print("Opción no válida.")
 
 if __name__ == "__main__":
     menu()

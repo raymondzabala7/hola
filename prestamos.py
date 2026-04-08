@@ -1,29 +1,31 @@
-from gestion_libros import cargar_datos, guardar_datos
+from gestion_libros import cargar_libros, guardar_libros
 
 def prestar_libro():
-    libros = cargar_datos()
-    titulo = input("\nTítulo del libro a prestar: ")
-    for l in libros:
-        if l['titulo'].lower() == titulo.lower():
-            if l['estado'] == "Disponible":
-                l['prestado_a'] = input("Nombre del usuario: ")
-                l['estado'] = "Prestado"
-                guardar_datos(libros)
-                print("Préstamo registrado.")
-                return
+    libros = cargar_libros()
+    titulo = input("\nIngrese el título del libro que desea prestar: ")
+    
+    for libro in libros:
+        if libro['titulo'].lower() == titulo.lower():
+            if libro['estado'] == "Disponible":
+                usuario = input("Ingrese el nombre del usuario: ")
+                libro['estado'] = "Prestado"
+                libro['prestado_a'] = usuario
+                guardar_libros(libros)
+                print(f'\nLibro "{libro["titulo"]}" prestado a {usuario}.')
             else:
-                print("El libro ya está prestado.")
-                return
-    print("Libro no encontrado.")
+                print("\nEl libro ya se encuentra prestado.")
+            return
+    print("\nLibro no encontrado.")
 
 def devolver_libro():
-    libros = cargar_datos()
-    titulo = input("\nTítulo del libro a devolver: ")
-    for l in libros:
-        if l['titulo'].lower() == titulo.lower():
-            l['estado'] = "Disponible"
-            l['prestado_a'] = None
-            guardar_datos(libros)
-            print("Devolución exitosa.")
+    libros = cargar_libros()
+    titulo = input("\nIngrese el título del libro que desea devolver: ")
+    
+    for libro in libros:
+        if libro['titulo'].lower() == titulo.lower():
+            libro['estado'] = "Disponible"
+            libro['prestado_a'] = None
+            guardar_libros(libros)
+            print(f'\nLibro "{libro["titulo"]}" ha sido devuelto y está disponible nuevamente.')
             return
-    print("Libro no encontrado.")
+    print("\nLibro no encontrado.")
